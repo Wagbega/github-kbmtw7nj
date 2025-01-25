@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+.bible-reading-container {
+  @apply relative flex flex-col w-full h-full bg-white rounded-xl shadow-lg overflow-hidden;
+}
+
+/* Custom scrollbar for webkit browsers */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.indigo.200') theme('colors.gray.100');
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: theme('colors.gray.100');
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: theme('colors.indigo.200');
+  border-radius: 3px;
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .touch-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    scroll-behavior: smooth;
+  }
+  
+  .touch-button {
+    @apply min-h-[44px] min-w-[44px];
+    touch-action: manipulation;
+  }
+}
+
+/* Landscape mode optimizations */
+@media (orientation: landscape) {
+  /* Container adjustments */
+  .landscape-container {
+    @apply max-h-screen overflow-hidden;
+  }
+
+  /* Header modifications */
+  .landscape-header {
+    @apply py-1;
+  }
+
+  .landscape-header-title {
+    @apply text-base;
+  }
+
+  /* Content area */
+  .landscape-content {
+    height: calc(100vh - 110px); /* Adjust based on header + footer height */
+    @apply overflow-y-auto pb-16;
+  }
+
+  /* Text size adjustments */
+  .landscape-text {
+    @apply text-sm leading-normal;
+  }
+
+  .landscape-heading {
+    @apply text-base;
+  }
+
+  /* Spacing adjustments */
+  .landscape-spacing {
+    @apply space-y-2 p-3;
+  }
+
+  /* Footer positioning */
+  .landscape-footer {
+    @apply fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200;
+  }
+
+  /* Modal adjustments */
+  .landscape-modal {
+    @apply max-h-[90vh] overflow-y-auto;
+  }
+
+  .landscape-modal-content {
+    @apply max-h-[80vh] overflow-y-auto;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  /* Prevent text zoom on input focus */
+  input, select, textarea, button {
+    @apply text-base;
+  }
+
+  /* Improve tap targets */
+  .mobile-tap-target {
+    @apply min-h-[44px] min-w-[44px] p-2;
+  }
+
+  /* Modal positioning */
+  .mobile-modal {
+    @apply fixed inset-0 z-50;
+  }
+
+  /* Bottom sheet modifications */
+  .mobile-bottom-sheet {
+    @apply fixed inset-x-0 bottom-0 rounded-t-xl;
+  }
+}
+
+/* Safe area insets support */
+@supports (padding: max(0px)) {
+  .safe-area-insets {
+    padding-top: max(env(safe-area-inset-top), 16px);
+    padding-bottom: max(env(safe-area-inset-bottom), 16px);
+    padding-left: max(env(safe-area-inset-left), 16px);
+    padding-right: max(env(safe-area-inset-right), 16px);
+  }
+
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 16px);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe {
+    @apply transition-none transform-none;
+  }
+}
+
+/* High contrast preferences */
+@media (prefers-contrast: high) {
+  .high-contrast {
+    @apply ring-2 ring-current;
+  }
+}
+
+/* Loading states */
+.loading-state {
+  @apply opacity-75 pointer-events-none select-none;
+}
+
+/* Animation utilities */
+.fade-enter {
+  @apply opacity-0;
+}
+
+.fade-enter-active {
+  @apply opacity-100 transition-opacity duration-200;
+}
+
+.fade-exit {
+  @apply opacity-100;
+}
+
+.fade-exit-active {
+  @apply opacity-0 transition-opacity duration-200;
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
+}
+
+/* Print styles */
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+
+  .print-break-inside-avoid {
+    break-inside: avoid;
+  }
+
+  .print-body {
+    @apply text-black bg-white;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .dark-mode {
+    @apply bg-gray-900 text-white;
+  }
+
+  .dark-mode-border {
+    @apply border-gray-700;
+  }
+
+  .dark-mode-card {
+    @apply bg-gray-800;
+  }
+}
